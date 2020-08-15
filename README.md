@@ -6,6 +6,7 @@ The `SingleInstance` module exports the following functions:
 
 - Enter-SingleInstance
 - Exit-SingleInstance
+- Get-ScriptPath
 
 ### Enter-SingleInstance
 Use this function to check if any other instances of the script are running by passing the script ID, such as script's path (`$PSCommandPath`), a GUID, or some other value that only that script would know. If the function detects that no other instances are running, it will create a mutex (named after the script ID), and return `true` to indicate that this is the first instance. The mutex will be held until the script calls the `Exit-SingleInstance` function, but before that any other script that calls `Enter-SingleInstance` will get back `false` and know that there is another instance of the script running. Keep in mind that if the first instance does not release the mutex (e.g. if the script crashes without cleanup), the mutex will be held until the system is rebooted.
